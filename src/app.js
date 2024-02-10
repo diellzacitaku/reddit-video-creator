@@ -5,11 +5,23 @@ import ArgumentHandler from "./services/argument-handler.js";
 
 function main() {
     const options = new ArgumentHandler().options;
-    console.log(options.clientId);
 
-    const wrapper = new Snoowrap(options);
+    const wrapper = new Snoowrap({
+        userAgent: "Reddit/1.0.0",
+        clientId: options.clientId,
+        clientSecret: options.clientSecret,
+        username: options.username,
+        password: options.password,
+    });
+
     const fetcher = new Fetcher(options);
-    fetcher.fetch(wrapper);
+    fetcher.fetch(wrapper).then((fetchedPosts) => {
+        fetchedPosts.forEach((post) => {
+            post.comments.forEach((comment) => {
+                console.log(comment);
+            })
+        })
+    });
 }
 
 main();
