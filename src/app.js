@@ -1,7 +1,8 @@
 import Snoowrap from "snoowrap";
 import Fetcher from "./services/fetcher.js";
 import ArgumentHandler from "./services/argument-handler.js";
-
+import TTSAudioGenerator from "./services/audio/text-to-speech.js"
+import ImageGenerator from "./services/image/image-generator.js";
 
 function main() {
     const options = new ArgumentHandler().options;
@@ -13,6 +14,9 @@ function main() {
         username: options.username,
         password: options.password,
     });
+
+    const ttsAudioGenerator = new TTSAudioGenerator();
+    const imageGenerator = new ImageGenerator("data/", ttsAudioGenerator);
 
     const fetcher = new Fetcher(options);
     fetcher.fetch(wrapper).then((fetchedPosts) => {

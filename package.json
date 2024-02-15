@@ -7,7 +7,9 @@
       "snoowrap": "^1.23.0",
       "commander": "12.0.0",
       "@google-cloud/text-to-speech": "^3.4.0",
-      "google-tts-api": "^2.0.2"
+      "google-tts-api": "^2.0.2",
+      "fabric": "^4.6.0",
+      "image-data-uri": "^2.0.1"
     },
     "scripts": {
       "start": "node src/app.js",
